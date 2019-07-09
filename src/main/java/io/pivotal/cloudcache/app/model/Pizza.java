@@ -22,28 +22,44 @@ import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.gemfire.mapping.annotation.Region;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Region("Pizza")
-@RequiredArgsConstructor(staticName = "named")
-@EqualsAndHashCode(of = { "name", "sauce", "toppings"})
 public class Pizza {
 
     private static final Sauce DEFAULT_SAUCE = Sauce.TOMATO;
 
-    @Getter
     private Set<Topping> toppings = new HashSet<>();
 
-    @Getter @Id @NonNull
+    @Id
     private final String name;
 
-    @Getter
     private Sauce sauce = DEFAULT_SAUCE;
+    
+    public Pizza(String name) {
+    	this.name = name;
+    }
 
-    public boolean has(Topping topping) {
+    public Set<Topping> getToppings() {
+		return toppings;
+	}
+
+	public void setToppings(Set<Topping> toppings) {
+		this.toppings = toppings;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Sauce getSauce() {
+		return sauce;
+	}
+
+	public void setSauce(Sauce sauce) {
+		this.sauce = sauce;
+	}
+
+	public boolean has(Topping topping) {
         return this.toppings.contains(topping);
     }
 

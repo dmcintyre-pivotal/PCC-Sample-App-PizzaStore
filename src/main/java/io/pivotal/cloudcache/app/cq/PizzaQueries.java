@@ -60,7 +60,7 @@ public class PizzaQueries {
                 System.err.printf("Pesto Pizza [%s] Ordered%n", pizzaName);
                 return pizzaName;
             })
-            .map(Name::of)
+            .map(Name::new)
             .ifPresent(this.nameRepository::save);
     }
 }

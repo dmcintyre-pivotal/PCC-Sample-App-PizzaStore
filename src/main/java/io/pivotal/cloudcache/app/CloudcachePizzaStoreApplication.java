@@ -16,6 +16,8 @@ package io.pivotal.cloudcache.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
+import org.springframework.data.gemfire.config.annotation.ClientCacheApplication.Locator;
 
 /**
  * This class runs the sample pizza store application.
@@ -31,6 +33,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
+@ClientCacheApplication(locators = {
+		@Locator(host = "192.168.1.66", port=10344)
+})
 public class CloudcachePizzaStoreApplication {
 
     public static void main(String[] args) {

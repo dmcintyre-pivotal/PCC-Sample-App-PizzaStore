@@ -17,19 +17,18 @@ package io.pivotal.cloudcache.app.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.gemfire.mapping.annotation.Region;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 @Region("Name")
-@EqualsAndHashCode(of = "name")
-@ToString(of = "name")
-@RequiredArgsConstructor(staticName = "of")
 public class Name {
 
-    @Getter @Id @NonNull
+    @Id
     private final String name;
+    
+    public Name(String name) {
+    	this.name = name;
+    }
 
+	public String getName() {
+		return name;
+	}
 }

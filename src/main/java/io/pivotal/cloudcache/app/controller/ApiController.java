@@ -37,7 +37,7 @@ import io.pivotal.cloudcache.app.repository.PizzaRepository;
  */
 @RestController
 @SuppressWarnings("unused")
-public class AppController {
+public class ApiController {
 
     private final GemFireCache gemfireCache;
 
@@ -45,7 +45,7 @@ public class AppController {
 
     private final PizzaRepository pizzaRepository;
 
-    public AppController(GemFireCache gemfireCache, NameRepository nameRepository, PizzaRepository pizzaRepository) {
+    public ApiController(GemFireCache gemfireCache, NameRepository nameRepository, PizzaRepository pizzaRepository) {
 
         this.gemfireCache = gemfireCache;
         this.nameRepository = nameRepository;
@@ -150,7 +150,7 @@ public class AppController {
             @RequestParam(name = "sauce", defaultValue = "TOMATO") Pizza.Sauce pizzaSauce,
             @RequestParam(name = "toppings", defaultValue = "CHEESE") Pizza.Topping[] toppings) {
 
-        Pizza namedPizza = Pizza.named(name).having(pizzaSauce);
+        Pizza namedPizza = new Pizza(name).having(pizzaSauce);
 
         Arrays.stream(toppings).forEach(namedPizza::with);
 
@@ -174,19 +174,19 @@ public class AppController {
 
     private Pizza makeFancyPizza() {
 
-        return Pizza.named("fancy")
+        return new Pizza("fancy")
             .having(Pizza.Sauce.ALFREDO)
             .with(Pizza.Topping.ARUGULA)
             .with(Pizza.Topping.CHICKEN);
     }
 
     private Pizza makePlainPizza() {
-        return Pizza.named("plain").with(Pizza.Topping.CHEESE);
+        return new Pizza("plain").with(Pizza.Topping.CHEESE);
     }
 
     private Pizza makeSuperFancyPizza(String name) {
 
-        return Pizza.named(name)
+        return new Pizza(name)
             .having(Pizza.Sauce.PESTO)
             .with(Pizza.Topping.CHICKEN)
             .with(Pizza.Topping.PARMESAN)

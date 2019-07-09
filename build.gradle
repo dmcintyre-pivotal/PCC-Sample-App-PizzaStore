@@ -9,7 +9,6 @@ buildscript {
 }
 
 plugins {
-	id "io.franzbecker.gradle-lombok" version "1.14"
 	id "java"
 	id "idea"
 	id "eclipse"
@@ -40,11 +39,6 @@ repositories {
 	maven {	url "https://plugins.gradle.org/m2/" }
 }
 
-lombok {
-	version = "$lombokVersion"
-	sha256 = ""
-}
-
 compileJava.dependsOn(processResources)
 
 dependencies {
@@ -54,6 +48,10 @@ dependencies {
 	}
 
 	compile("org.springframework.boot:spring-boot-starter-web"){
+		exclude module: 'spring-boot-starter-logging'
+	}
+
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf"){
 		exclude module: 'spring-boot-starter-logging'
 	}
 

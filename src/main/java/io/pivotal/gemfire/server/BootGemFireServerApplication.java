@@ -23,11 +23,6 @@ import org.springframework.geode.config.annotation.UseGroups;
 import org.springframework.geode.security.support.SecurityManagerSupport;
 import org.springframework.util.Assert;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 /**
  * The BootGemFireServerApplication class...
@@ -129,7 +124,7 @@ public class BootGemFireServerApplication {
 				throw new AuthenticationFailedException(String.format("User [%s] is not authorized", actualUsername));
 			}
 
-			return User.of(actualUsername);
+			return new User(actualUsername);
 		}
 
 		@Override
@@ -138,13 +133,13 @@ public class BootGemFireServerApplication {
 		}
 	}
 
-	@ToString(of = "name")
-	@EqualsAndHashCode(of = "name")
-	@RequiredArgsConstructor(staticName = "of")
 	static class User implements Serializable {
 
-		@NonNull @Getter
 		private final String name;
+		
+		public User(String name) {
+			this.name = name;
+		}
 
 	}
 }
