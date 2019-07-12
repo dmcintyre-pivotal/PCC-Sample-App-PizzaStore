@@ -1,0 +1,5 @@
+rootProject.name = 'pcc-pizza-store'
+
+include 'library'
+include 'application'
+

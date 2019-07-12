@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link rel="stylesheet" href="/css/pizza.css"></link>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
+	
+<script language="javascript" src="/js/pizza.js"></script>
+
+<script>
+
+setTimeout(updateMenu, 1000);
+setTimeout(updateOven, 1000);
+
+</script>
+
+
+</head>
+<body>
+<h1>Welcome To Pizza Heaven</h1>
+
+<h2>What's on the menu?</h2>
+
+<form onsubmit="orderPizza(); return false">
+<table id="menu">
+<tr>
+	<th>Bases</th><th>Toppings</th><th>Sauces</th>
+</tr>
+<tr>
+	<td id="menu-bases"></td><td id="menu-toppings"></td><td id="menu-sauces"></td>
+</tr>
+</table>
+<input type="submit" value="Order One"/>
+</form>
+	
+<h2>What's in the oven?</h2>
+<div id="oven-status"></div>
+<table id="oven-contents">
+<tr>
+	<th>Base</th><th>Toppings</th><th>Sauce</th>
+</tr>
+<tr>
+	<td id="pizza-base"></td><td id="pizza-toppings"></td><td id="pizza-sauce"></td>
+</tr>
+</table>
+
+<input type="button" value="Make Some For The Shop" onclick="makeShopPizzas()"/>
+
+</body>
+</html>

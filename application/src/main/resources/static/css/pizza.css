@@ -1,0 +1,15 @@
+th {
+	text-align: left;
+	background: menu;
+}
+
+td {
+	vertical-align: top;
+	padding: 4px;
+}
+
+
+
+#toppings input {
+	display: inline-block;
+}
